@@ -31,6 +31,8 @@ on:
   push:
     branches:
       - avdev_branch
+      - main
+      - avtest_branch
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
