@@ -16,7 +16,7 @@ on:
     branches: [ "main", "avdev_branch", "avtest_branch" ]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "avdev_branch", "avtest_branch" ]
+    branches: [ "main", "avdev_branch", "avtest_branch" ]
   schedule:
     - cron: '25 0 * * 0'
 
