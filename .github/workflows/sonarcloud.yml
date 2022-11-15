@@ -30,6 +30,7 @@ name: SonarCloud
 on:
   push:
     branches:
+      - main
       - avdev_branch
       - avtest_branch
   pull_request:
