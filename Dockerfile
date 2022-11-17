@@ -6,7 +6,7 @@ RUN chmod -R g=u /home/webgoat
 
 USER webgoat
 
-COPY --chown=webgoat target/webgoat-*.jar /home/webgoat/webgoat.jar
+COPY --from=build --chown=webgoat target/webgoat-*.jar /home/webgoat/webgoat.jar
 
 EXPOSE 8080
 EXPOSE 9090
