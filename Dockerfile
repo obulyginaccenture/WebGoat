@@ -1,5 +1,5 @@
 FROM docker.io/eclipse-temurin:17-jre-focal as build
-
+WORKDIR /home/webgoat
 RUN useradd -ms /bin/bash webgoat
 RUN chgrp -R 0 /home/webgoat
 RUN chmod -R g=u /home/webgoat
@@ -12,7 +12,7 @@ COPY --from=build --chown=webgoat ./target/webgoat-*.jar /home/webgoat/webgoat.j
 EXPOSE 8080
 EXPOSE 9090
 
-WORKDIR /home/webgoat
+
 ENTRYPOINT [ "java", \
    "-Duser.home=/home/webgoat", \
    "-Dfile.encoding=UTF-8", \
