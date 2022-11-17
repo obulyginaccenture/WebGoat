@@ -7,7 +7,7 @@ RUN chmod -R g=u /home/webgoat
 USER webgoat
 
 FROM docker.io/eclipse-temurin:17-jre-focal
-COPY --from=build --chown=webgoat target/webgoat-*.jar /home/webgoat/webgoat.jar
+COPY --from=build --chown=webgoat ./target/webgoat-*.jar /home/webgoat/webgoat.jar
 
 EXPOSE 8080
 EXPOSE 9090
