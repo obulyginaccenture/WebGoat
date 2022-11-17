@@ -1,4 +1,4 @@
-FROM docker.io/eclipse-temurin:17-jre-focal as build
+FROM docker.io/eclipse-temurin:17-jre-focal
 
 RUN useradd -ms /bin/bash webgoat
 RUN chgrp -R 0 /home/webgoat
@@ -6,8 +6,7 @@ RUN chmod -R g=u /home/webgoat
 
 USER webgoat
 
-FROM docker.io/eclipse-temurin:17-jre-focal
-RUN cp --from=build --chown=webgoat ./target/webgoat-*.jar /home/webgoat/webgoat.jar
+RUN cp --chown=webgoat ./target/webgoat-*.jar /home/webgoat/webgoat.jar
 
 EXPOSE 8080
 EXPOSE 9090
