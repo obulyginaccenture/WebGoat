@@ -73,8 +73,9 @@ jobs:
           uses: actions/download-artifact@v3
           with: 
                 name: artifact
-        - name: Build an image from Dockerfile
-          run: |
-            docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
-
+        - name: Publish to Docker Hub
+          uses: docker/build-push-action@v1     
+          with:
+           repository: dockerHubUser/dockerHubRepository       
+           tags: ${{github.run_number}}
 
