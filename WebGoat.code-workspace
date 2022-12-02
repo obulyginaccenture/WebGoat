@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "[obulyginaccenture/WebGoat source archive]",
+			"uri": "codeql-zip-archive://1-152/c:\\Users\\oleksii.bulygin\\AppData\\Roaming\\Code\\User\\workspaceStorage\\bd419b64edc8e0f7fcece4e401b905b9\\GitHub.vscode-codeql\\javascript\\javascript\\src.zip"
+		},
+		{
+			"name": "Quick Queries",
+			"path": "../../AppData/Roaming/Code/User/workspaceStorage/bd419b64edc8e0f7fcece4e401b905b9/GitHub.vscode-codeql/quick-queries"
+		}
+	],
+	"settings": {
+		"java.configuration.updateBuildConfiguration": "interactive",
+		"sarif-viewer.connectToGithubCodeScanning": "on"
+	}
+}
