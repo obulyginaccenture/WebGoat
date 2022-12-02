@@ -1,0 +1,2144 @@
+{
+    "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Veracode Static Analysis Pipeline Scan",
+                    "rules": [
+                        {
+                            "id": "117",
+                            "name": "Improper Output Neutralization for Logs",
+                            "shortDescription": {
+                                "text": "CWE-117: Improper Output Neutralization for Logs"
+                            },
+                            "fullDescription": {
+                                "text": ""
+                            },
+                            "help": {
+                                "text": "The software does not neutralize or incorrectly neutralizes output that is written to logs."
+                            },
+                            "helpUri": "https://cwe.mitre.org/data/definitions/117.html",
+                            "properties": {
+                                "category": "taint",
+                                "tags": [
+                                    "taint"
+                                ]
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            }
+                        },
+                        {
+                            "id": "331",
+                            "name": "Insufficient Entropy",
+                            "shortDescription": {
+                                "text": "CWE-331: Insufficient Entropy"
+                            },
+                            "fullDescription": {
+                                "text": ""
+                            },
+                            "help": {
+                                "text": "The software uses an algorithm or scheme that produces insufficient entropy, leaving patterns or clusters of values that are more likely to occur than others."
+                            },
+                            "helpUri": "https://cwe.mitre.org/data/definitions/331.html",
+                            "properties": {
+                                "category": "reliability",
+                                "tags": [
+                                    "reliability"
+                                ]
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning"
+                            }
+                        },
+                        {
+                            "id": "404",
+                            "name": "Improper Resource Shutdown or Release",
+                            "shortDescription": {
+                                "text": "CWE-404: Improper Resource Shutdown or Release"
+                            },
+                            "fullDescription": {
+                                "text": ""
+                            },
+                            "help": {
+                                "text": "The program does not release or incorrectly releases a resource before it is made available for re-use."
+                            },
+                            "helpUri": "https://cwe.mitre.org/data/definitions/404.html",
+                            "properties": {
+                                "category": "reliability",
+                                "tags": [
+                                    "reliability"
+                                ]
+                            },
+                            "defaultConfiguration": {
+                                "level": "note"
+                            }
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ia/factory/OperationObjectFactory.java"
+                                },
+                                "region": {
+                                    "startLine": 75
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getExpand",
+                                    "fullyQualifiedName": "com.td.cams.api.ia.factory.OperationObjectFactory.getExpand",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "4094363855",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1277416488",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3240272364",
+                        "prototypeHash": "319911210"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ia/factory/InsuranceAgreementObjectFactory.java"
+                                },
+                                "region": {
+                                    "startLine": 86
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "createDataModelValueObject",
+                                    "fullyQualifiedName": "com.td.cams.api.ia.factory.InsuranceAgreementObjectFactory.createDataModelValueObject",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2049639621",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1943268462",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1263722258",
+                        "prototypeHash": "1231680314"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ia/InsuranceAgreementService.java"
+                                },
+                                "region": {
+                                    "startLine": 96
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getAdapter",
+                                    "fullyQualifiedName": "com.td.cams.api.ia.InsuranceAgreementService.getAdapter",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "509733768",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2938757313",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2204143163",
+                        "prototypeHash": "3981292159"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ia/InsuranceAgreementService.java"
+                                },
+                                "region": {
+                                    "startLine": 124
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "executeInsuranceAgreementManagement",
+                                    "fullyQualifiedName": "com.td.cams.api.ia.InsuranceAgreementService.executeInsuranceAgreementManagement",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3627110861",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "3797646990",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "158084893",
+                        "prototypeHash": "4086608197"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from earlier calls to AnnotationVirtualController.vc_annotation_entry, AnnotationVirtualController.vc_taintobj, javax.servlet.http.HttpServletRequestWrapper.getMethod, and javax.servlet.http.HttpServletRequest.getMethod.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/tsys/TSYSProfileUtil.java"
+                                },
+                                "region": {
+                                    "startLine": 79
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getTSYSUserId",
+                                    "fullyQualifiedName": "com.td.cams.api.common.tsys.TSYSProfileUtil.getTSYSUserId",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1178905838",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1985869792",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1014137370",
+                        "prototypeHash": "2952352213"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/tsys/TSYSProfileUtil.java"
+                                },
+                                "region": {
+                                    "startLine": 101
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getTSYSUserId",
+                                    "fullyQualifiedName": "com.td.cams.api.common.tsys.TSYSProfileUtil.getTSYSUserId",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1722783752",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "4216069378",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1014137370",
+                        "prototypeHash": "2952352213"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to java.net.URLConnection.getInputStream.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/requestor/soap/connector/SOAPRequestor.java"
+                                },
+                                "region": {
+                                    "startLine": 65
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "readInputStreamToString",
+                                    "fullyQualifiedName": "com.td.cams.api.common.requestor.soap.connector.SOAPRequestor.readInputStreamToString",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "742265046",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "3637331755",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3046036065",
+                        "prototypeHash": "1217651643"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/requestor/api/connector/APIConnector.java"
+                                },
+                                "region": {
+                                    "startLine": 67
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "doRequest",
+                                    "fullyQualifiedName": "com.td.cams.api.common.requestor.api.connector.APIConnector.doRequest",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3938702568",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "403277957",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3038236266",
+                        "prototypeHash": "4150526721"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/dataadapter/key/CreditCardKey.java"
+                                },
+                                "region": {
+                                    "startLine": 58
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "createKey",
+                                    "fullyQualifiedName": "com.td.cams.api.common.dataadapter.key.CreditCardKey.createKey",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1457978874",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2114419468",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1294712634",
+                        "prototypeHash": "2298849389"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/dataadapter/key/CreditCardKey.java"
+                                },
+                                "region": {
+                                    "startLine": 78
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "createKey",
+                                    "fullyQualifiedName": "com.td.cams.api.common.dataadapter.key.CreditCardKey.createKey",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3417345616",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2774945916",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1294712634",
+                        "prototypeHash": "2298849389"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/binding/exception/mappers/ExceptionMapperBuilder.java"
+                                },
+                                "region": {
+                                    "startLine": 25
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "buildFatalResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.common.binding.exception.mappers.ExceptionMapperBuilder.buildFatalResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "957820430",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1696650910",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2978503081",
+                        "prototypeHash": "3656757227"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The second argument to error() contains tainted data from the variable e. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/binding/exception/mappers/ExceptionMapperBuilder.java"
+                                },
+                                "region": {
+                                    "startLine": 25
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "buildFatalResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.common.binding.exception.mappers.ExceptionMapperBuilder.buildFatalResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "957820430",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1696650910",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2978503081",
+                        "prototypeHash": "3656757227"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/binding/exception/mappers/ExceptionMapperBuilder.java"
+                                },
+                                "region": {
+                                    "startLine": 36
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "buildGeneralResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.common.binding.exception.mappers.ExceptionMapperBuilder.buildGeneralResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "957820430",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1696650910",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1122322003",
+                        "prototypeHash": "395520360"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The second argument to error() contains tainted data from the variable e. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/cams/api/common/binding/exception/mappers/ExceptionMapperBuilder.java"
+                                },
+                                "region": {
+                                    "startLine": 36
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "buildGeneralResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.common.binding.exception.mappers.ExceptionMapperBuilder.buildGeneralResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "957820430",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1696650910",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1122322003",
+                        "prototypeHash": "395520360"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ccam/mapping/party/segments/tdct/PartyGetIndividualsCIFNoSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 60
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getRequest",
+                                    "fullyQualifiedName": "com.td.cams.api.ccam.mapping.party.segments.tdct.PartyGetIndividualsCIFNoSegment.getRequest",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3468033520",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2974004902",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2101592565",
+                        "prototypeHash": "1147644982"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ccam/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 109
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getOriginatingChannelTypeCd",
+                                    "fullyQualifiedName": "com.td.cams.api.ccam.mapping.RequestResponseHelper.getOriginatingChannelTypeCd",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "4088387401",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2088496431",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2352027590",
+                        "prototypeHash": "4264232728"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ccam/CreditCardAgreementManagementService.java"
+                                },
+                                "region": {
+                                    "startLine": 128
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "executeCreditCardAgreementManagementManagement",
+                                    "fullyQualifiedName": "com.td.cams.api.ccam.CreditCardAgreementManagementService.executeCreditCardAgreementManagementManagement",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3627110861",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "3797646990",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2721560780",
+                        "prototypeHash": "784370237"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/ccam/CreditCardAgreementManagementObjectFactory.java"
+                                },
+                                "region": {
+                                    "startLine": 69
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "createDataModelValueObject",
+                                    "fullyQualifiedName": "com.td.cams.api.ccam.CreditCardAgreementManagementObjectFactory.createDataModelValueObject",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3856074666",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "269042334",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3366861142",
+                        "prototypeHash": "2507628386"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_taintobj.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/usbc/InqCustInfoTypeMsgSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 131
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "mapAgreement",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.usbc.InqCustInfoTypeMsgSegment.mapAgreement",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1622809959",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2648297846",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3495315636",
+                        "prototypeHash": "3748722731"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/usbc/InqCustAddrTypeMsgSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 123
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "mapAgreement",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.usbc.InqCustAddrTypeMsgSegment.mapAgreement",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3220875012",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "594272990",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2954198072",
+                        "prototypeHash": "2676519372"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/usbc/DelAuthMsgSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 69
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "writeTSYSSegmentString",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.usbc.DelAuthMsgSegment.writeTSYSSegmentString",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2835013642",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1712138573",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3497810843",
+                        "prototypeHash": "2501938445"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/tdct/InqCustInfoAgrMessageSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 304
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "parse",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.tdct.InqCustInfoAgrMessageSegment.parse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1306413485",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1694995784",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "515178757",
+                        "prototypeHash": "4256433301"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/tdct/InqCustInfoAgrMessageSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 305
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "parse",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.tdct.InqCustInfoAgrMessageSegment.parse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "745338018",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "159827581",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "515178757",
+                        "prototypeHash": "4256433301"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/tdct/InqCustAddrMessageSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 69
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "parseTSYSResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.tdct.InqCustAddrMessageSegment.parseTSYSResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1392003446",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2676152300",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1393605080",
+                        "prototypeHash": "2614757382"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/tsys/segments/tdct/InqCustAddrMessageSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 70
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "parseTSYSResponse",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.tsys.segments.tdct.InqCustAddrMessageSegment.parseTSYSResponse",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2791853985",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "851707731",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1393605080",
+                        "prototypeHash": "2614757382"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/lds/segments/InsertAuditDataForPreferenceDBSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 106
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "setNewRKOPreference",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.lds.segments.InsertAuditDataForPreferenceDBSegment.setNewRKOPreference",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3478775360",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2231167274",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2984588074",
+                        "prototypeHash": "1879428851"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/lds/segments/InsertAuditDataForPreferenceDBSegment.java"
+                                },
+                                "region": {
+                                    "startLine": 137
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "setUserId",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.lds.segments.InsertAuditDataForPreferenceDBSegment.setUserId",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1730425926",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1773905033",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "452801136",
+                        "prototypeHash": "339617836"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 403
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "isPacketEligible",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.isPacketEligible",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2515911257",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1909631439",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3752821725",
+                        "prototypeHash": "2705430640"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data from the variable logMessage. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 439
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "isPacketEligible",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.isPacketEligible",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3765405848",
+                        "flawHashCount": "3",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "153293750",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3752821725",
+                        "prototypeHash": "2705430640"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data from the variable logMessage. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 451
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "isPacketEligible",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.isPacketEligible",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3765405848",
+                        "flawHashCount": "3",
+                        "flawHashOrdinal": "2",
+                        "causeHash": "153293750",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3752821725",
+                        "prototypeHash": "2705430640"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data from the variable logMessage. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 456
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "isPacketEligible",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.isPacketEligible",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3765405848",
+                        "flawHashCount": "3",
+                        "flawHashOrdinal": "3",
+                        "causeHash": "153293750",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3752821725",
+                        "prototypeHash": "2705430640"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>Standard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().</span> <span>If this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/331.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 659
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "evaluateTrackingNum",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.evaluateTrackingNum",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.util.Random.nextInt",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "331",
+                    "partialFingerprints": {
+                        "flawHash": "1731131541",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "724242040",
+                        "causeHashCount": "4",
+                        "causeHashOrdinal": "4",
+                        "procedureHash": "3299938612",
+                        "prototypeHash": "4146034803"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>Standard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().</span> <span>If this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/331.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 659
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "evaluateTrackingNum",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.evaluateTrackingNum",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.util.Random.nextInt",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "331",
+                    "partialFingerprints": {
+                        "flawHash": "1731131541",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "724242040",
+                        "causeHashCount": "4",
+                        "causeHashOrdinal": "2",
+                        "procedureHash": "3299938612",
+                        "prototypeHash": "4146034803"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>Standard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().</span> <span>If this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/331.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 659
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "evaluateTrackingNum",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.evaluateTrackingNum",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.util.Random.nextInt",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "331",
+                    "partialFingerprints": {
+                        "flawHash": "1731131541",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "724242040",
+                        "causeHashCount": "4",
+                        "causeHashOrdinal": "3",
+                        "procedureHash": "3299938612",
+                        "prototypeHash": "4146034803"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>Standard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().</span> <span>If this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/331.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 659
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "evaluateTrackingNum",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.evaluateTrackingNum",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.util.Random.nextInt",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "331",
+                    "partialFingerprints": {
+                        "flawHash": "1731131541",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "724242040",
+                        "causeHashCount": "4",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3299938612",
+                        "prototypeHash": "4146034803"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>Standard random number generators do not provide a sufficient amount of entropy when used for security purposes. Attackers can brute force the output of pseudorandom number generators such as rand().</span> <span>If this random number is used where security is a concern, such as generating a session key or session identifier, use a trusted cryptographic random number generator instead.  These can be found on the Windows platform in the CryptoAPI or in an open source library such as OpenSSL.  In Java, use the SecureRandom object to ensure sufficient entropy.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/331.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 717
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getRandomInteger4Digit",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.getRandomInteger4Digit",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.util.Random.nextDouble",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "331",
+                    "partialFingerprints": {
+                        "flawHash": "4150479444",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2866949028",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3383923360",
+                        "prototypeHash": "4146034803"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 741
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getClientIDForRKOPreference",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.getClientIDForRKOPreference",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "4137579106",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "650974049",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1119149340",
+                        "prototypeHash": "53986850"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/mapping/RequestResponseHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 747
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getClientIDForRKOPreference",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.mapping.RequestResponseHelper.getClientIDForRKOPreference",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1713290112",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1236596592",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1119149340",
+                        "prototypeHash": "53986850"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/data/validation/tdcards/GetAgreementDataValidation.java"
+                                },
+                                "region": {
+                                    "startLine": 83
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "doValidation",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.data.validation.tdcards.GetAgreementDataValidation.doValidation",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1823213731",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "392510675",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3837729375",
+                        "prototypeHash": "3236530173"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/data/validation/common/GetAgreementDataValidation.java"
+                                },
+                                "region": {
+                                    "startLine": 81
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "doValidation",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.data.validation.common.GetAgreementDataValidation.doValidation",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1823213731",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "392510675",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3614188937",
+                        "prototypeHash": "2193523488"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.error() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to error() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/data/validation/common/CreditCardAgreementServiceDataValidator.java"
+                                },
+                                "region": {
+                                    "startLine": 166
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "expandPossibleValues",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.data.validation.common.CreditCardAgreementServiceDataValidator.expandPossibleValues",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.error",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "1823213731",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "392510675",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1943274533",
+                        "prototypeHash": "3184819471"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/data/validation/CCACommonValidator.java"
+                                },
+                                "region": {
+                                    "startLine": 63
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "doDataGroupPossibleValueValidation",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.data.validation.CCACommonValidator.doDataGroupPossibleValueValidation",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2099812466",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "1323618912",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3211778115",
+                        "prototypeHash": "3304343274"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/CreditCardAgreementServiceHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 64
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "addResource",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.CreditCardAgreementServiceHelper.addResource",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "3819472180",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "4253300322",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "864970883",
+                        "prototypeHash": "2925936605"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/CreditCardAgreementServiceHelper.java"
+                                },
+                                "region": {
+                                    "startLine": 150
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getData",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.CreditCardAgreementServiceHelper.getData",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "2673281244",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2356694864",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "2085608774",
+                        "prototypeHash": "3466675806"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/CreditCardAgreementService.java"
+                                },
+                                "region": {
+                                    "startLine": 347
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getAdapter",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.CreditCardAgreementService.getAdapter",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "509733768",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2938757313",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1226367216",
+                        "prototypeHash": "2656660272"
+                    }
+                },
+                {
+                    "level": "warning",
+                    "rank": 3,
+                    "message": {
+                        "text": "<span>This call to org.apache.logging.log4j.Logger.debug() could result in a log forging attack.  Writing untrusted data into a log file allows an attacker to forge log entries or inject malicious content into log files.  Corrupted log files can be used to cover an attacker's tracks or as a delivery mechanism for an attack on a log viewing or processing utility.  For example, if a web administrator uses a browser-based utility to review logs, a cross-site scripting attack might be possible. The first argument to debug() contains tainted data. The tainted data originated from an earlier call to AnnotationVirtualController.vc_annotation_entry.</span> <span>Avoid directly embedding user input in log files when possible.  Sanitize untrusted data used to construct log entries by using a safe logging mechanism such as the OWASP ESAPI Logger, which will automatically remove unexpected carriage returns and line feeds and can be configured to use HTML entity encoding for non-alphanumeric data.  Alternatively, some of the XSS escaping functions from the OWASP Java Encoder project will also sanitize CRLF sequences.  Only create a custom blocklist when absolutely necessary.  Always validate untrusted input to ensure that it conforms to the expected format, using centralized data validation routines when possible.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/117.html\">CWE</a> <a href=\"https://owasp.org/www-community/attacks/Log_Injection\">OWASP</a> <a href=\"https://docs.veracode.com/r/review_cleansers?tocId=nYnZqAenFFZmB75MQrZwuA\">Supported Cleansers</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "src/main/java/com/td/cams/api/cca/CreditCardAgreementService.java"
+                                },
+                                "region": {
+                                    "startLine": 381
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "executeCreditCardAgreement",
+                                    "fullyQualifiedName": "com.td.cams.api.cca.CreditCardAgreementService.executeCreditCardAgreement",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "org.apache.logging.log4j.Logger.debug",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "117",
+                    "partialFingerprints": {
+                        "flawHash": "780926617",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "811021226",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "847875796",
+                        "prototypeHash": "3255536064"
+                    }
+                },
+                {
+                    "level": "note",
+                    "rank": 0,
+                    "message": {
+                        "text": "<span>The program fails to release or incorrectly releases the variable getReader, which was previously allocated by a call to java.io.BufferedReader.!operator_javanewinit().</span> <span>Ensure that all code paths properly release this resource.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/404.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/coreapi/common/sanitizevalidate/RequestSanitizeWrapper.java"
+                                },
+                                "region": {
+                                    "startLine": 178
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getReader",
+                                    "fullyQualifiedName": "com.td.coreapi.common.sanitizevalidate.RequestSanitizeWrapper.getReader",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.io.BufferedReader.!operator_javanewinit",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "404",
+                    "partialFingerprints": {
+                        "flawHash": "3798562090",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "3438462004",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1151990215",
+                        "prototypeHash": "3850940339"
+                    }
+                },
+                {
+                    "level": "note",
+                    "rank": 0,
+                    "message": {
+                        "text": "<span>The program fails to release or incorrectly releases the variable getReader, which was previously allocated by a call to java.io.BufferedReader.!operator_javanewinit().</span> <span>Ensure that all code paths properly release this resource.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/404.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/coreapi/common/sanitizevalidate/RequestSanitizeWrapper.java"
+                                },
+                                "region": {
+                                    "startLine": 181
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getReader",
+                                    "fullyQualifiedName": "com.td.coreapi.common.sanitizevalidate.RequestSanitizeWrapper.getReader",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.io.BufferedReader.!operator_javanewinit",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "404",
+                    "partialFingerprints": {
+                        "flawHash": "2704958630",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2102461906",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "1151990215",
+                        "prototypeHash": "3850940339"
+                    }
+                },
+                {
+                    "level": "note",
+                    "rank": 0,
+                    "message": {
+                        "text": "<span>The program fails to release or incorrectly releases the variable getReader, which was previously allocated by a call to java.io.BufferedReader.!operator_javanewinit().</span> <span>Ensure that all code paths properly release this resource.</span> <span>References: <a href=\"https://cwe.mitre.org/data/definitions/404.html\">CWE</a></span>"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "com/td/coreapi/common/logger/LoggerRequestWrapper.java"
+                                },
+                                "region": {
+                                    "startLine": 96
+                                }
+                            },
+                            "logicalLocations": [
+                                {
+                                    "name": "getReader",
+                                    "fullyQualifiedName": "com.td.coreapi.common.logger.LoggerRequestWrapper.getReader",
+                                    "kind": "function"
+                                },
+                                {
+                                    "fullyQualifiedName": "java.io.BufferedReader.!operator_javanewinit",
+                                    "kind": "member",
+                                    "parentIndex": 0
+                                }
+                            ]
+                        }
+                    ],
+                    "ruleId": "404",
+                    "partialFingerprints": {
+                        "flawHash": "4197142632",
+                        "flawHashCount": "1",
+                        "flawHashOrdinal": "1",
+                        "causeHash": "2700405122",
+                        "causeHashCount": "1",
+                        "causeHashOrdinal": "1",
+                        "procedureHash": "3874304828",
+                        "prototypeHash": "3850940339"
+                    }
+                }
+            ]
+        }
+    ]
+}
